@@ -6,7 +6,7 @@ const os = require('os');
 const pathProjectDist = path.join(__dirname, 'project-dist');
 const pathStyle = path.join(__dirname, 'project-dist', 'style.css');
 
-console.log('Hello, please, in case an error appears then try runnig the command from Command Prompt(cmd) or Git Bash');
+console.log('Hello, please, in case an error appears then try runnig the command from Command Prompt(cmd) or Git Bash. Or close and then open VScode!!!');
 
 fs.access(pathProjectDist, function(err) {
   if (err && err.code === 'ENOENT') {
@@ -14,7 +14,7 @@ fs.access(pathProjectDist, function(err) {
     .then(() => createIndexJs())
     .then(() => readWrite())
     .then(() => copyAssets());
-    console.log("New");
+    //console.log("New");
     
   } else {
     fsPromises.rm(path.join(__dirname, 'project-dist', 'assets', 'svg'), { recursive: true, force: true })
@@ -27,16 +27,16 @@ fs.access(pathProjectDist, function(err) {
     .then(() => readWrite())
     .then(() => copyAssets())
     .catch((err) => {console.log(err)});
-    console.log("Remove and New");
+    //console.log("Remove and New");
   }
 
   function createNewDir() {
-    console.log('createnewdirrrrrr');
+    //console.log('createnewdirrrrrr');
     return fsPromises.mkdir(pathProjectDist, { recursive: true });
   }
 
   function createIndexJs(){
-    console.log('createIndexJs');
+    //console.log('createIndexJs');
     const stream = fs.createReadStream(path.join(__dirname, 'template.html'), 'utf-8');
 
     let data = '';
@@ -78,7 +78,7 @@ fs.access(pathProjectDist, function(err) {
   }
 
   function readWrite() {
-    console.log('readWrite');
+    //console.log('readWrite');
     fs.readdir(path.join(__dirname, 'styles'), 
       { withFileTypes: true },
       (err, files) => {
@@ -113,7 +113,7 @@ fs.access(pathProjectDist, function(err) {
   }
 
  function copyAssets(){
-  console.log('assets');
+  //console.log('assets');
   fs.readdir(path.join(__dirname, 'assets'), 
     { withFileTypes: true },
     (err, files) => {
